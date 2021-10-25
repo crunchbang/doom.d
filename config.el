@@ -52,14 +52,9 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; Pretty bullets for Org Mode
 (require 'org-superstar)
 (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-
-;; (require 'evil-org)
-;; (add-hook 'org-mode-hook 'evil-org-mode)
-;; (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
-;; (require 'evil-org-agenda)
-;; (evil-org-agenda-set-keys)
 
 ;; Projectile
 (setq projectile-project-search-path '("~/src" "~/setu"))
