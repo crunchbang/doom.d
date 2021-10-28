@@ -61,3 +61,12 @@
 
 ;; Org Roam
 (setq org-roam-directory "~/scaling-bassoon")
+
+;; Overriding some overridden key-bindings
+;;; I prefer cmd key for meta
+(setq mac-option-key-is-meta nil
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier 'super)
+;; Sound for org-mode-timer
+(setq org-clock-sound "~/Downloads/ding.wav")
