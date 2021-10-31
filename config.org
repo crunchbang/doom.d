@@ -1,0 +1,138 @@
+#+TITLE:     Doom config
+#+AUTHOR:    Athul Suresh
+#+EMAIL:     athulsure@gmail.com
+#+STARTUP:   overview
+
+
+* UI
+** Font
+I've experimented with multiple fonts in the past and nothing seemed good enough. That was until I found [[https://www.jetbrains.com/lp/mono/][JetBrains Mono]]. I've been using it ever since I saw the announcement on HN and I have it configured on all my dev environments. The one I've configured here is a patched version provided by [[https://www.nerdfonts.com/][Nerd Fonts]].
+#+begin_src elisp :tangle config.el
+;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
+;; are the three important ones:
+;;
+;; + `doom-font'
+;; + `doom-variable-pitch-font'
+;; + `doom-big-font' -- used for `doom-big-font-mode'; use this for
+;;   presentations or streaming.
+;;
+;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+;; font string. You generally only need these two:
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
+#+end_src
+
+** Theme
+I generally run my display at the lowest brightness setting since it's easier on the eye when I have to stare at it for long stretches of time. Most of the dark themes are barely visible at low brightness, and so I've switched to using light themes.
+#+begin_src elisp :tangle config.el
+;; There are two ways to load a theme. Both assume the theme is installed and
+;; available. You can either set `doom-theme' or manually load a theme with the
+;; `load-theme' function. This is the default:
+(setq doom-theme 'doom-one-light)
+#+end_src
+*** TODO Spend some time trying out [[https://github.com/protesilaos/modus-themes][modus-themes]]
+The colors looked a bit off the last time I tried it. I might have to spend some time tweaking the configs.
+
+** General
+#+begin_src elisp :tangle config.el
+;; Some functionality uses this to identify you, e.g. GPG configuration, email
+;; clients, file templates and snippets.
+(setq user-full-name "Athul Suresh"
+      user-mail-address "athulsure@gmail.com")
+#+end_src
+
+
+#+begin_src elisp :tangle config.el
+(setq display-line-numbers-type 't)
+#+end_src
+
+* Mac Specific Config
+I was facing weird issues in the beginning because meta and super keys were bound to cmd key on my mac. This explicitly separates them out.
+#+begin_src elisp :tangle config.el
+(setq mac-option-key-is-meta nil
+      mac-command-key-is-meta t
+      mac-command-modifier 'meta
+      mac-option-modifier 'super)
+#+end_src
+* Org-Mode
+
+** General
+I track all my notes in a private git repo. This was a practice I started when I using VSCode-Foam and it has carried over to Emacs.
+#+begin_src elisp :tangle config.el
+(setq org-directory "~/scaling-bassoon/")
+#+end_src
+
+Sound for org-mode timer. I wanted to use this as a pomodoro feature, but this does not seem to work.
+#+begin_src elisp :tangle config.el
+(setq org-clock-sound "~/Downloads/ding.wav")
+#+end_src
+
+I was absolutely fascinated by the concept of drawers and adding context to tasks. Logbook seems to be the supported way to do it.
+#+begin_src elisp :tangle config.el
+(setq org-log-into-drawer "LOGBOOK")
+#+end_src
+
+** Pretty bullets
+#+begin_src elisp :tangle config.el
+;; Pretty bullets for Org Mode
+; (require 'org-superstar)
+; (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
+#+end_src
+*** TODO Remove this if +pretty gives the same result
+
+** Roam
+I've disabled org-roam until I figure out how to organize my notes.
+#+begin_src elisp :tangle config.el
+(setq org-roam-directory "~/scaling-bassoon")
+#+end_src
+
+** Org-Journal
+
+* LSP
+The LSP is the most amazing plugin I've used in a while, except for the weird part where the doc popup is annoying transparent. And it makes my cursor disapper sometimes. Disabling it until I can find a more permanent solution.
+#+begin_src elisp :tangle config.el
+(setq lsp-ui-doc-enable nil)
+#+end_src
+
+* Projectile
+Set project paths for projectile
+#+begin_src elisp :tangle config.el
+(setq projectile-project-search-path '("~/src" "~/setu" "~/scaling-bassoon"))
+#+end_src
+
+I was facing issues where projectile was showing me stale data in the file search bufer (new files / deleted files). Disabling the cache seems to have fixed the issue.
+#+begin_src elisp :tangle config.el
+(setq projectile-enable-caching nil)
+#+end_src
+
+* General
+Temporary workaround for the [[https://github.com/hlissner/doom-emacs/issues/5706][doom emacs issue]].
+#+begin_src elisp :tangle config.el
+(defun native-comp-available-p nil)
+#+end_src
+* For Later
+#+begin_example elisp
+;; Here are some additional functions/macros that could help you configure Doom:
+;;
+;; - `load!' for loading external *.el files relative to this one
+;; - `use-package!' for configuring packages
+;; - `after!' for running code after a package has loaded
+;; - `add-load-path!' for adding directories to the `load-path', relative to
+;;   this file. Emacs searches the `load-path' when you load packages with
+;;   `require' or `use-package'.
+;; - `map!' for binding new keys
+;;
+;; To get information about any of these functions/macros, move the cursor over
+;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
+;; This will open documentation for it, including demos of how they are used.
+;;
+;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
+;; they are implemented.
+
+;; Do I need this?
+;; (setq +format-on-save-enabled-modes
+;;       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+;;             sql-mode         ; sqlformat is currently broken
+;;             tex-mode         ; latexindent is broken
+;;             org-mode
+;;             latex-mode))
+#+end_example

@@ -20,6 +20,9 @@
   :recipe (:host github :repo "meqif/docker-compose-mode"))
 (package! command-log-mode
   :recipe (:host github :repo "lewang/command-log-mode"))
+(package! modus-themes
+  :recipe (:host github :repo "protesilaos/modus-themes"))
+
 
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
