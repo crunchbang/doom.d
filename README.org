@@ -1,0 +1,7 @@
+#+TITLE:   README
+#+DATE:    November 1, 2021
+#+STARTUP: inlineimages nofold
+
+# A summary of what this module does.
+
+The monstorsity I use to drive my doom emacs. A highly detailed config can be found [[file:config.org][here]].
