@@ -41,7 +41,7 @@
 
 (setq lsp-ui-doc-enable nil)
 
-(setq projectile-project-search-path '("~/src" "~/setu" "~/scaling-bassoon"))
+(setq projectile-project-search-path '("~/src" "~/scaling-bassoon"))
 
 (setq projectile-enable-caching nil)
 

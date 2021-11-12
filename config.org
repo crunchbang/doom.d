@@ -96,7 +96,7 @@ The LSP is the most amazing plugin I've used in a while, except for the weird pa
 * Projectile
 Set project paths for projectile
 #+begin_src elisp :tangle config.el
-(setq projectile-project-search-path '("~/src" "~/setu" "~/scaling-bassoon"))
+(setq projectile-project-search-path '("~/src" "~/scaling-bassoon"))
 #+end_src
 
 I was facing issues where projectile was showing me stale data in the file search bufer (new files / deleted files). Disabling the cache seems to have fixed the issue.
