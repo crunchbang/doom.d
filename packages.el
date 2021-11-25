@@ -14,6 +14,8 @@
 ;; https://github.com/raxod502/straight.el#the-recipe-format
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
+(package! ox-gfm
+  :recipe (:host github :repo "larstvei/ox-gfm"))
 (package! org-superstar
   :recipe (:host github :repo "integral-dw/org-superstar-mode"))
 (package! docker-compose-mode
