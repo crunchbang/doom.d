@@ -71,14 +71,6 @@ I was absolutely fascinated by the concept of drawers and adding context to task
 (setq org-log-into-drawer "LOGBOOK")
 #+end_src
 
-** Pretty bullets
-#+begin_src elisp :tangle config.el
-;; Pretty bullets for Org Mode
-; (require 'org-superstar)
-; (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-#+end_src
-*** TODO Remove this if +pretty gives the same result
-
 ** Roam
 I've disabled org-roam until I figure out how to organize my notes.
 #+begin_src elisp :tangle config.el
@@ -93,6 +85,18 @@ The LSP is the most amazing plugin I've used in a while, except for the weird pa
 (setq lsp-ui-doc-enable nil)
 #+end_src
 
+* Flycheck
+I prefer a nice little indicator on the margin to denote lines having syntax errors. It's easier to parse with the naked eye.
+#+begin_src elisp :tangle config.el
+(setq-default left-fringe-width 1 right-fringe-width 8
+              left-margin-width 1 right-margin-width 0)
+(setq-default flycheck-indication-mode 'left-margin)
+#+end_src
+
+* Org Roam v2
+#+begin_src elisp :tangle config.el
+(setq org-roam-directory "~/scaling-bassoon/org-roam")
+#+end_src
 * Projectile
 Set project paths for projectile
 #+begin_src elisp :tangle config.el
@@ -105,10 +109,6 @@ I was facing issues where projectile was showing me stale data in the file searc
 #+end_src
 
 * General
-Temporary workaround for the [[https://github.com/hlissner/doom-emacs/issues/5706][doom emacs issue]].
-#+begin_src elisp :tangle config.el
-(defun native-comp-available-p nil)
-#+end_src
 * For Later
 #+begin_example elisp
 ;; Here are some additional functions/macros that could help you configure Doom:

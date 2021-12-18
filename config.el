@@ -33,16 +33,16 @@
 
 (setq org-log-into-drawer "LOGBOOK")
 
-;; Pretty bullets for Org Mode
-; (require 'org-superstar)
-; (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-
 (setq org-roam-directory "~/scaling-bassoon")
 
 (setq lsp-ui-doc-enable nil)
 
+(setq-default left-fringe-width 1 right-fringe-width 8
+              left-margin-width 1 right-margin-width 0)
+(setq-default flycheck-indication-mode 'left-margin)
+
+(setq org-roam-directory "~/scaling-bassoon/org-roam")
+
 (setq projectile-project-search-path '("~/src" "~/setu" "~/scaling-bassoon"))
 
 (setq projectile-enable-caching nil)
-
-(defun native-comp-available-p nil)
