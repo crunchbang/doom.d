@@ -45,6 +45,11 @@ The colors looked a bit off the last time I tried it. I might have to spend some
 (setq display-line-numbers-type 't)
 #+end_src
 
+** Soft Line Wrapping
+Getting soft line wraps to work was harder than I'd initially imagined. There wasn't an obvious solution in the inital google searches. Finally, I found =visual-fill-mode= in a comment which solved the problem.
+#+begin_src elisp :tangle config.el
+(setq visual-fill-column-width 80)
+#+end_src
 * Mac Specific Config
 I was facing weird issues in the beginning because meta and super keys were bound to cmd key on my mac. This explicitly separates them out.
 #+begin_src elisp :tangle config.el
@@ -54,7 +59,6 @@ I was facing weird issues in the beginning because meta and super keys were boun
       mac-option-modifier 'super)
 #+end_src
 * Org-Mode
-
 ** General
 I track all my notes in a private git repo. This was a practice I started when I using VSCode-Foam and it has carried over to Emacs.
 #+begin_src elisp :tangle config.el
@@ -71,22 +75,18 @@ I was absolutely fascinated by the concept of drawers and adding context to task
 (setq org-log-into-drawer "LOGBOOK")
 #+end_src
 
-** Pretty bullets
-#+begin_src elisp :tangle config.el
-;; Pretty bullets for Org Mode
-; (require 'org-superstar)
-; (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-#+end_src
-*** TODO Remove this if +pretty gives the same result
-
 ** Roam
 I've disabled org-roam until I figure out how to organize my notes.
 #+begin_src elisp :tangle config.el
 (setq org-roam-directory "~/scaling-bassoon")
 #+end_src
 
-** Org-Journal
-
+** Completions
+I'm not a fan of the auto-complete that pops up while typing english in org mode. I would rather do without it.
+#+begin_src elisp :tangle config.el
+(after! org-mode
+  (set-company-backend! 'org-mode nil))
+#+end_src
 * LSP
 The LSP is the most amazing plugin I've used in a while, except for the weird part where the doc popup is annoying transparent. And it makes my cursor disapper sometimes. Disabling it until I can find a more permanent solution.
 #+begin_src elisp :tangle config.el
@@ -104,10 +104,15 @@ I was facing issues where projectile was showing me stale data in the file searc
 (setq projectile-enable-caching nil)
 #+end_src
 
-* General
-Temporary workaround for the [[https://github.com/hlissner/doom-emacs/issues/5706][doom emacs issue]].
+* Common Lisp
+Lookup wasn't working as expected. Guess, I'll have to set those manually.
+** TODO This might be shitty
 #+begin_src elisp :tangle config.el
-(defun native-comp-available-p nil)
+
+(set-lookup-handlers! 'lisp-mode
+  :definition #'sly-describe-symbol
+  :references #'sly-describe-symbol
+  :documentation #'sly-describe-symbol)
 #+end_src
 * For Later
 #+begin_example elisp

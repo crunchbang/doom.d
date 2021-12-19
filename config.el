@@ -22,6 +22,8 @@
 
 (setq display-line-numbers-type 't)
 
+(setq visual-fill-column-width 80)
+
 (setq mac-option-key-is-meta nil
       mac-command-key-is-meta t
       mac-command-modifier 'meta
@@ -33,11 +35,10 @@
 
 (setq org-log-into-drawer "LOGBOOK")
 
-;; Pretty bullets for Org Mode
-; (require 'org-superstar)
-; (add-hook 'org-mode-hook (lambda () (org-superstar-mode 1)))
-
 (setq org-roam-directory "~/scaling-bassoon")
+
+(after! org-mode
+  (set-company-backend! 'org-mode nil))
 
 (setq lsp-ui-doc-enable nil)
 
@@ -45,4 +46,7 @@
 
 (setq projectile-enable-caching nil)
 
-(defun native-comp-available-p nil)
+(set-lookup-handlers! 'lisp-mode
+  :definition #'sly-describe-symbol
+  :references #'sly-describe-symbol
+  :documentation #'sly-describe-symbol)
