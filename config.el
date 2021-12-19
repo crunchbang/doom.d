@@ -1,2 +1,2 @@
-(system-name)
+;;(system-name)
 ;; "Athuls-MacBook-Pro.local"
