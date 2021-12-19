@@ -6,7 +6,7 @@
 
 * General
 There are some settings where the values need to be different between my different laptops. Using the =system-name= is the easiest solution I've found to differentiate the machines.
-#+begin_src elisp
+#+begin_src elisp :tangle config.el
 
 (setq mac-work "Athuls-MacBook-Pro.local")
 (setq mac-personal "MtDoom.local")
