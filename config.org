@@ -4,6 +4,14 @@
 #+STARTUP:   overview
 
 
+* General
+There are some settings where the values need to be different between my different laptops. Using the =system-name= is the easiest solution I've found to differentiate the machines.
+#+begin_src elisp
+
+(setq mac-work "Athuls-MacBook-Pro.local")
+(setq mac-personal "MtDoom.local")
+
+#+end_src
 * UI
 ** Font
 I've experimented with multiple fonts in the past and nothing seemed good enough. That was until I found [[https://www.jetbrains.com/lp/mono/][JetBrains Mono]]. I've been using it ever since I saw the announcement on HN and I have it configured on all my dev environments. The one I've configured here is a patched version provided by [[https://www.nerdfonts.com/][Nerd Fonts]].
@@ -65,20 +73,9 @@ I track all my notes in a private git repo. This was a practice I started when I
 (setq org-directory "~/scaling-bassoon/")
 #+end_src
 
-Sound for org-mode timer. I wanted to use this as a pomodoro feature, but this does not seem to work.
-#+begin_src elisp :tangle config.el
-(setq org-clock-sound "~/Downloads/ding.wav")
-#+end_src
-
 I was absolutely fascinated by the concept of drawers and adding context to tasks. Logbook seems to be the supported way to do it.
 #+begin_src elisp :tangle config.el
 (setq org-log-into-drawer "LOGBOOK")
-#+end_src
-
-** Roam
-I've disabled org-roam until I figure out how to organize my notes.
-#+begin_src elisp :tangle config.el
-(setq org-roam-directory "~/scaling-bassoon")
 #+end_src
 
 ** Completions
@@ -105,10 +102,18 @@ I prefer a nice little indicator on the margin to denote lines having syntax err
 #+begin_src elisp :tangle config.el
 (setq org-roam-directory "~/scaling-bassoon/org-roam")
 #+end_src
+
 * Projectile
 Set project paths for projectile
 #+begin_src elisp :tangle config.el
-(setq projectile-project-search-path '("~/src" "~/scaling-bassoon"))
+
+(setq project-path '("~/src" "~/scaling-bassoon"))
+
+(if (string= (system-name) mac-work)
+    (cons "~/setu" project-path))
+
+(setq projectile-project-search-path project-path)
+
 #+end_src
 
 I was facing issues where projectile was showing me stale data in the file search bufer (new files / deleted files). Disabling the cache seems to have fixed the issue.
@@ -116,16 +121,10 @@ I was facing issues where projectile was showing me stale data in the file searc
 (setq projectile-enable-caching nil)
 #+end_src
 
-* General
-#+begin_src elisp
-;;(system-name)
-;; "Athuls-MacBook-Pro.local"
-#+end_src
 * Common Lisp
 Lookup wasn't working as expected. Guess, I'll have to set those manually.
 ** TODO This might be shitty
 #+begin_src elisp :tangle config.el
-
 (set-lookup-handlers! 'lisp-mode
   :definition #'sly-describe-symbol
   :references #'sly-describe-symbol
