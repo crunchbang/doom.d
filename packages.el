@@ -8,25 +8,12 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
-(package! visual-fill-column)
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
-;; https://github.com/raxod502/straight.el#the-recipe-format
+;; https://github.com/radian-software/straight.el#the-recipe-format
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
-(package! ox-gfm
-  :recipe (:host github :repo "larstvei/ox-gfm"))
-(package! org-superstar
-  :recipe (:host github :repo "integral-dw/org-superstar-mode"))
-(package! docker-compose-mode
-  :recipe (:host github :repo "meqif/docker-compose-mode"))
-(package! command-log-mode
-  :recipe (:host github :repo "lewang/command-log-mode"))
-(package! modus-themes
-  :recipe (:host github :repo "protesilaos/modus-themes"))
-
-
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
@@ -47,7 +34,7 @@
 
 ;; Specify a `:branch' to install a package from a particular branch or tag.
 ;; This is required for some packages whose default branch isn't 'master' (which
-;; our package manager can't deal with; see raxod502/straight.el#279)
+;; our package manager can't deal with; see radian-software/straight.el#279)
 ;(package! builtin-package :recipe (:branch "develop"))
 
 ;; Use `:pin' to specify a particular commit to install.
