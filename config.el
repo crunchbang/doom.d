@@ -81,5 +81,7 @@
 (add-hook! '(markdown-mode-hook org-mode-hook)
            #'git-auto-commit-mode)
 
-;; Add work file to org-agenda
 (setq org-agenda-files '("~/silly-notes/work.org"))
+
+(with-eval-after-load 'ox
+  (require 'ox-hugo))
