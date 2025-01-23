@@ -75,13 +75,19 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; olivetti-mode centres text in the middle of the frame
 (add-hook! '(markdown-mode-hook org-mode-hook)
            #'olivetti-mode)
 
+;; git-auto-commit-mode automatically makes a commit on save
 (add-hook! '(markdown-mode-hook org-mode-hook)
            #'git-auto-commit-mode)
 
 (setq org-agenda-files '("~/silly-notes/work.org"))
 
+;; enable ox-hugo to export org files to hugo compatible markdown
 (with-eval-after-load 'ox
   (require 'ox-hugo))
+
+;; enable soft line wrap
+(global-visual-line-mode 1)
