@@ -22,7 +22,7 @@
 ;; accept. For example:
 ;;
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 16 :weight 'Regular)
-     doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 16))
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 16))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -92,18 +92,22 @@
 ;; enable soft line wrap
 (global-visual-line-mode 1)
 
-; org-journal config
+;; org-journal config
 (defun org-journal-file-header-func (time)
   "Custom function to create journal header."
   (concat
-    (pcase org-journal-file-type
-      (`daily "#+TITLE: Daily Journal\n#+STARTUP: showeverything\n")
-      (`weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded\n")
-      (`monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded\n")
-      (`yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded\n\n"))))
+   (pcase org-journal-file-type
+     (`daily "#+TITLE: Daily Journal\n#+STARTUP: showeverything\n")
+     (`weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded\n")
+     (`monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded\n")
+     (`yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded\n\n"))))
 
 (setq org-journal-file-header 'org-journal-file-header-func)
 (setq org-journal-dir "~/silly-notes/journal")
 (setq org-journal-date-format "%A, %e-%b-%Y")
 (setq org-journal-file-type 'yearly)
 (setq org-journal-file-format "%Y")
+
+;; rust stuff
+(setq lsp-inlay-hint-enable t)
+(lsp-inlay-hints-mode)
