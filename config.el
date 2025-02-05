@@ -110,4 +110,4 @@
 
 ;; rust stuff
 (setq lsp-inlay-hint-enable t)
-(lsp-inlay-hints-mode)
+(add-hook! '(rust-mode) #'lsp-inlay-hints-mode)
